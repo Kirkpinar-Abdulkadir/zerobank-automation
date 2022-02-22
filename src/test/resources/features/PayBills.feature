@@ -15,9 +15,9 @@ Feature: Pay Bills Page
 
   Scenario: Pay without amount
     When user try to complete pay without amount
-    Then the user get alert "Please fill in this field."
+    Then the user get alert "Please fill out this field."
 
   Scenario: Pay without date
     When user try to complete pay without date
-    Then the user get alert "Please fill in this field." date
+    Then the user get alert "Please fill out this field." date
 

@@ -1,4 +1,4 @@
-@smoke
+
 Feature: Purchase Foreign Currency
 
   Background:
