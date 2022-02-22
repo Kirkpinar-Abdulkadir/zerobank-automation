@@ -1,3 +1,4 @@
+@smoke
 Feature: Account Summary Page
 
   Scenario: Page Title Should Be Displayed

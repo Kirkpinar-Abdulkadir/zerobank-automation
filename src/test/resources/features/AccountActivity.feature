@@ -1,3 +1,4 @@
+@smoke
 Feature: Account Activity Page
 
   Background:
