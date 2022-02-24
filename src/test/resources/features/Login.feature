@@ -15,3 +15,15 @@ Feature: Login
   Scenario: Login with empty credentials
     When the user enters empty credentials
     Then the user should get a warning
+
+  @wip
+  Scenario Outline: Login with wrong or empty credentials
+    When the user logs in with"<userName>" and "<passWord>"
+    Then the user should get a warning
+
+    Examples:
+      | userName | passWord |
+      | wrong    | password |
+      | username | wrong    |
+      | userName |          |
+      |          | password |

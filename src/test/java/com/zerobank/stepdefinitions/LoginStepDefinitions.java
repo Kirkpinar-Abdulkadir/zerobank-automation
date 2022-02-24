@@ -12,6 +12,8 @@ import org.junit.Assert;
 
 public class LoginStepDefinitions {
 
+    LoginPage loginPage = new LoginPage();
+
     @Given("the user is on the login page")
     public void the_user_is_on_the_login_page() {
         Driver.get().get(ConfigurationReader.get("url"));
@@ -21,7 +23,7 @@ public class LoginStepDefinitions {
     public void the_user_enters_valid_credentials() {
         String username = ConfigurationReader.get("username");
         String password = ConfigurationReader.get("password");
-        new LoginPage().login(username,password);
+        loginPage.login(username,password);
         Driver.get().navigate().to("http://zero.webappsecurity.com/bank/account-summary.html");
         BrowserUtils.waitFor(2);
     }
@@ -35,19 +37,19 @@ public class LoginStepDefinitions {
     public void the_user_enters_invalid_credentials() {
         String username = ConfigurationReader.get("invalid_username");
         String password = ConfigurationReader.get("invalid_password");
-        new LoginPage().login(username,password);
+        loginPage.login(username,password);
     }
 
     @Then("the user should get a warning")
     public void the_user_should_get_a_warning() {
-        Assert.assertEquals("Login and/or password are wrong.",new LoginPage().alertElm.getText());
+        Assert.assertEquals("Login and/or password are wrong.",loginPage.alertElm.getText());
     }
 
     @When("the user enters empty credentials")
     public void the_user_enters_empty_credentials() {
         String username = "";
         String password = "";
-        new LoginPage().login(username,password);
+        loginPage.login(username,password);
     }
 
     @Given("the user is logged in")
@@ -56,4 +58,10 @@ public class LoginStepDefinitions {
         the_user_enters_valid_credentials();
     }
 
+    @When("the user logs in with{string} and {string}")
+    public void theUserLogsInWithAnd(String username, String password) {
+        loginPage.usernameInput.sendKeys(username);
+        loginPage.passwordInput.sendKeys(password);
+        loginPage.submitButton.click();
+    }
 }
